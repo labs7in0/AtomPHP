@@ -1,9 +1,9 @@
 Please Add the following options into array $option ( in config.php ).
      /* Database Config */
-      'DBType' => 'MySQL', // Reserved for upgrade, useless in this version.
-      'DBHost' => 'localhost',
-      'DBFile' => '', // Reserved for upgrade, useless in this version.
-      'DBUser' => 'root',
-      'DBPwd' => 'password',
-      'Database' => 'database',
+      'dbType' => 'MySQL', // Reserved for upgrade, useless in this version.
+      'dbHost' => 'localhost',
+      'dbFile' => '', // Reserved for upgrade, useless in this version.
+      'dbUser' => 'root',
+      'dbPwd' => 'password',
+      'database' => 'database',
       'dbPrefix' => 'atp_',

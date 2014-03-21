@@ -9,20 +9,21 @@
   */
 class databaseModule {
     public $requirement = array (
-            'DBType',
-            'DBHost',
-            'DBFile',
-            'DBUser',
-            'DBPwd',
-            'Database',
+            'dbType',
+            'dbHost',
+            'dbFile',
+            'dbUser',
+            'dbPwd',
+            'database',
             'dbPrefix' 
     );
     private $core, $option, $dbHandle;
     private $errList = array (
-            '121' => 'Database: Cannot connect to database',
-            '122' => 'Database: Must bind columns',
-            '123' => 'Database: Cannot prepare statement for execution',
-            '123' => 'Database: Cannot fetch result' 
+            '121' => 'database: Cannot connect to database',
+            '122' => 'database: Must bind columns',
+            '123' => 'database: Cannot prepare statement for execution',
+            '124' => 'database: Cannot fetch result',
+            '125' => 'database: Database return error # %s' 
     );
     public function __construct($core) {
         $this->core = $core;
@@ -30,30 +31,46 @@ class databaseModule {
     }
     public function initialize($type, $host, $file, $user, $pwd, $db, $prefix) {
         $this->option = array (
-                'DBType' => $type,
-                'DBHost' => $host,
-                'DBFile' => $file,
-                'DBUser' => $user,
-                'DBPwd' => $pwd,
-                'Database' => $db,
+                'dbType' => $type,
+                'dbHost' => $host,
+                'dbFile' => $file,
+                'dbUser' => $user,
+                'dbPwd' => $pwd,
+                'database' => $db,
                 'dbPrefix' => $prefix 
         );
         
         $this->core->addErrlist ( $this->errList );
         
-        $dsn = $this->option ['DBType'] . ':host=' . $this->option ['DBHost'] . ';dbname=' . $this->option ['Database'];
+        $dsn = $this->option ['dbType'] . ':host=' . $this->option ['dbHost'] . ';dbname=' . $this->option ['database'] . ';charset=utf8';
         
         try {
-            $this->dbHandle = new PDO ( $dsn, $this->option ['DBUser'], $this->option ['DBPwd'] );
+            $this->dbHandle = new PDO ( $dsn, $this->option ['dbUser'], $this->option ['dbPwd'] );
+            $this->dbHandle->setAttribute ( PDO::ATTR_EMULATE_PREPARES, false );
         } catch ( PDOException $e ) {
             $this->core->err ( '121' );
         }
     }
-    public function query($sql) {
+    public function query($sql, $bind) {
         $sth = @$this->dbHandle->prepare ( $sql ) or $this->core->err ( '123' );
-        @$sth->execute ( $req ) or $this->core->err ( '123' );
-        $result = @$sth->fetchAll () or $this->core->err ( '123' );
-        return $result;
+        @$sth->execute ( $bind ) or $this->core->err ( '124' );
+        if ($sth->errorCode == 0) {
+            $result = @$sth->fetchAll ( PDO::FETCH_ASSOC );
+            if (empty ( $result ) || empty ( $result [0] ))
+                return NULL;
+            else
+                return $result;
+        } else {
+            $this->core->err ( '125', $sth->errorCode );
+        }
+    }
+    public function exec($sql, $bind) {
+        $sth = @$this->dbHandle->prepare ( $sql ) or $this->core->err ( '123' );
+        @$sth->execute ( $bind ) or $this->core->err ( '124' );
+        if ($sth->errorCode == 0)
+            return $sth->rowCount ();
+        else
+            $this->core->err ( '125', $sth->errorCode );
     }
 }
 ?>
