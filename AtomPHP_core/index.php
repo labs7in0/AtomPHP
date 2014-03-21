@@ -40,12 +40,12 @@ if (! file_exists ( $appFile ))
 require_once $appFile;
 
 if (! class_exists ( $appName ))
-    $core->err ( '104', $appFile );
+    $core->err ( '103', $appFile );
 
 $controller = new $appName ( $core );
 
 if (! method_exists ( $appName, $appMethod ))
-    $core->err ( '106', $appName . '->' . $appMethod );
+    $core->err ( '105', $appName . '::' . $appMethod );
 
 $controller->$appMethod (); // Run the applaction
 
