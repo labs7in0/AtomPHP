@@ -5,7 +5,7 @@
   * @Author     7IN0SAN9 <me@7in0.me>
   * @License    CC BY-ND 4.0
   * @Version    1.2.1
-  * @Website    https://7in0.me/studio/projects/AtomPHP
+  * @Website    https://7in0.me/labs/AtomPHP
   */
 class databaseModule {
     public $requirement = array (
