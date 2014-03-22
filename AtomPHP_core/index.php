@@ -3,7 +3,7 @@
   * @Category   AtomPHP
   * @Package    me.7in0.atomphp
   * @Author     7IN0SAN9 <me@7in0.me>
-  * @License    CC BY-ND 4.0
+  * @License    CC BY 4.0
   * @Version    1.3.1
   * @Website    https://7in0.me/labs/AtomPHP
   */
