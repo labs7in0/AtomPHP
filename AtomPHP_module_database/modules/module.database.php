@@ -23,7 +23,7 @@ class databaseModule {
             '122' => 'database: Must bind columns',
             '123' => 'database: Cannot prepare statement for execution',
             '124' => 'database: Cannot fetch result',
-            '125' => 'database: Database return error # %s' 
+            '125' => 'database: Database returned an error : %s' 
     );
     public function __construct($core) {
         $this->core = $core;
