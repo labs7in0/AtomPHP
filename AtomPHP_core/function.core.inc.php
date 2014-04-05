@@ -28,7 +28,7 @@ class atomPHP {
         if (is_file ( 'function.templates.inc.php' )) {
             require_once 'function.templates.inc.php';
             if (! class_exists ( 'templates' ))
-                $this->ccErr ( '101', 'function.templates.inc.php' );
+                $this->ccErr ( '103', 'function.templates.inc.php' );
             $this->templates = new templates ( $this, $this->option ['templateDir'], $this->option ['compileDir'], $this->option ['cacheDir'], $this->option ['cache'] );
         }
         
