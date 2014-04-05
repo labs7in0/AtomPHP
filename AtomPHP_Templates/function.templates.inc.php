@@ -109,11 +109,19 @@ class templatesModuleCompiler {
     
     // Template paeser
     public function parse($parse_file) {
+        $this->cleanPHP ();
         $this->parseInc ();
         $this->parseVar ();
         
         if (! @file_put_contents ( $parse_file, $this->content ))
             $this->core->err ( '111' );
+    }
+    
+    // Clean PHP code in tpl file
+    private function cleanPHP() {
+        $pattern = '/\<\?.*\?\>/';
+        if (preg_match ( $pattern, $this->content ))
+            $this->content = preg_replace ( $pattern, '', $this->content );
     }
     
     // Include parser
