@@ -21,7 +21,7 @@ class blankModule {
 
     public function __construct( $core ) {
         $this->core = $core;
-        $this->core->AddErrlist ( $this->errList );
+        $this->core->regErrlist ( $this->errList );
         // Put somethind here if you need...
     }
 

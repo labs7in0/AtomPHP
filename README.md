@@ -35,7 +35,7 @@ To config this framework, edit config.php
     /**
       * @Category   Category of Your Application
       * @Package    Package Name of Your Application
-      * @Framework  AtomPHP V1.3.1 created by 7IN0SAN9 <me@7in0.me>
+      * @Framework  AtomPHP V1.3.2 created by 7IN0SAN9 <me@7in0.me>
       * @Author     Your name here <Your-Email-Here>
       * @License    Choose a License
       * @Copyright  Your Name or Organization Name Here
@@ -65,7 +65,7 @@ First, create a php file named indexController.php in directory 'controller'.
     /**
       * @Category   
       * @Package    
-      * @Framework  AtomPHP V1.3.1 created by 7IN0SAN9 <me@7in0.me>
+      * @Framework  AtomPHP V1.3.2 created by 7IN0SAN9 <me@7in0.me>
       * @Author     
       * @License    
       * @Copyright  
@@ -96,7 +96,7 @@ First, create a php file named indexView.php in directory 'view'.
     /**
       * @Category   
       * @Package    
-      * @Framework  AtomPHP V1.3.1 created by 7IN0SAN9 <me@7in0.me>
+      * @Framework  AtomPHP V1.3.2 created by 7IN0SAN9 <me@7in0.me>
       * @Author     
       * @License    
       * @Copyright  
@@ -127,7 +127,7 @@ First, create a php file named demoService.php in directory 'service'.
     /**
       * @Category   
       * @Package    
-      * @Framework  AtomPHP V1.3.1 created by 7IN0SAN9 <me@7in0.me>
+      * @Framework  AtomPHP V1.3.2 created by 7IN0SAN9 <me@7in0.me>
       * @Author     
       * @License    
       * @Copyright  
@@ -211,9 +211,9 @@ Add some configurations into config.php if needed.
 
 Then use the following codes to run a method of modules in your controllers.
 
-    $this->core->callMethod ( 'ModuleName', 'MethodName', array (
+    $this->core->callMethod ( 'ModuleName', 'MethodName'[, array (
         'Arg1',
         'Arg2',
          .... ,
         'ArgN' 
-    ) );
+    )] );
