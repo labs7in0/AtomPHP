@@ -13,7 +13,7 @@ For example, you visit /index.php?app=index&act=index&p=index, the entry will tr
 
 Start a new application
 ---
-To start your application, make a copy of AtomPHP_core and following this wizard.
+To start your application, make a copy of AtomPHP_core and following this guide.
 
 The directory will look like:
 
