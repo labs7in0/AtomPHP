@@ -26,26 +26,26 @@ $appMethod = empty ( $_GET ['act'] ) ? 'index' : $_GET ['act']; // Get menthod n
 
 // Get parameters for controller
 $appPara = $_GET ['p'];
-$core->regVariable ( $appPara );
+$core->addVariable ( $appPara );
 $postPara = ( object ) $_POST;
-$core->regVariable ( $postPara, 'POST' );
+$core->addVariable ( $postPara, 'POST' );
 
 // Load the applaction
 $appName = $appStr . 'Controller';
 $appFile = 'controller/' . $appName . '.php';
 
 if (! file_exists ( $appFile ))
-  $core->err ( '102', $appFile );
+    $core->err ( '102', $appFile );
 
 require_once $appFile;
 
 if (! class_exists ( $appName ))
-  $core->err ( '103', $appFile );
+    $core->err ( '103', $appFile );
 
 $controller = new $appName ( $core );
 
 if (! method_exists ( $appName, $appMethod ))
-  $core->err ( '105', $appName . '::' . $appMethod );
+    $core->err ( '105', $appName . '::' . $appMethod );
 
 $controller->$appMethod (); // Run the applaction
 
